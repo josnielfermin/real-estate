@@ -42,7 +42,7 @@ export const Button: React.FC<ButtonProps> = ({
     "inline-flex items-center justify-center font-medium *:transition-all !duration-300 focus:outline-none relative overflow-hidden";
   const variants: Record<ButtonVariant, string> = {
     filled:
-      "bg-primary-3 text-base-6 hover:bg-white hover:[box-shadow:_0_1px_23.5px_0_rgba(255,_255,_255,_0.25)] disabled:bg-gray-3 disabled:hover:bg-gray-3 disabled:text-gray-2",
+      "bg-primary-1 text-base-6 hover:bg-white disabled:bg-gray-3 disabled:hover:bg-gray-3 disabled:text-gray-2",
     outlined:
       "bg-transparent text-primary-3 hover:bg-primary-3/10 border border-primary-3 disabled:hover:bg-transparent disabled:text-gray-3 disabled:border-gray-3",
     basic:
@@ -94,22 +94,6 @@ export const Button: React.FC<ButtonProps> = ({
       aria-label={ariaLabel}
       {...props}
     >
-      {variant === "filled" && (
-        <>
-          <Image
-            src={"/static/images/button-gradient.svg"}
-            alt=""
-            fill
-            className="absolute -bottom-6 -right-12 z-[0] max-md:hidden"
-          />
-          <Image
-            src={"/static/images/button-gradient-mobile.svg"}
-            alt=""
-            fill
-            className="absolute -bottom-6 -right-12 z-[0] md:hidden"
-          />
-        </>
-      )}
       {leftIcon && (
         <>
           {loading ? (
