@@ -48,7 +48,7 @@ export const Team = () => {
           <div className="hidden lg:block lg:col-span-5">
             <div className="w-full h-[520px] relative rounded-2xl overflow-hidden">
               <Image
-                src="/static/images/premium-properties/calvalli-tower.png"
+                src="/static/images/team/build-decorator.png"
                 alt="decorative building"
                 fill
                 className="object-contain"
