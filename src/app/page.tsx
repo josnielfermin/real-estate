@@ -1,15 +1,15 @@
 "use client";
 
-import { Cover } from "@/components/Cover";
-import { Partners } from "@/components/Partners";
-import { Highlights } from "@/components/Highlights";
-import { Exclusive } from "@/components/Exclusive";
-import { PremiumProperties } from "@/components/PremiumProperties";
-import { Pros } from "@/components/Pros";
-import { Banner } from "@/components/Banner";
-import { Clients } from "@/components/Clients";
-import { MainArticle } from "@/components/MainArticle";
-import { Blog } from "@/components/Blog";
+import { Cover } from "@/components/Landing/Cover";
+import { Partners } from "@/components/Landing/Partners";
+import { Highlights } from "@/components/Landing/Highlights";
+import { Exclusive } from "@/components/Landing/Exclusive";
+import { PremiumProperties } from "@/components/Landing/PremiumProperties";
+import { Pros } from "@/components/Landing/Pros";
+import { Banner } from "@/components/Landing/Banner";
+import { Clients } from "@/components/Landing/Clients";
+import { MainArticle } from "@/components/Landing/MainArticle";
+import { Blog } from "@/components/Landing/Blog";
 import { Team } from "@/components/Team";
 import { Questions } from "@/components/Questions";
 import Newsletter from "@/components/Newsletter";
