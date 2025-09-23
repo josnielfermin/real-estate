@@ -110,18 +110,22 @@ export const Content = {
       {
         title: "Luxury sales advisors",
         amount: "110+",
+        icon: "icon-stars",
       },
       {
         title: "Sales offices",
         amount: "20+",
+        icon: "icon-build",
       },
       {
         title: "Satisfied clients",
         amount: "20k",
+        icon: "icon-people",
       },
       {
         title: "Sales advisors",
         amount: "20+",
+        icon: "icon-stars",
       },
     ],
   },
