@@ -54,9 +54,7 @@ export const Header = ({
 
   return (
     <header className="w-full flex items-center justify-between gap-4 px-[clamp(1.25rem,_-2.417rem_+_7.639vw,_6.75rem)] py-4 h-[108px] max-md:h-[82px]">
-      <div className="max-md:mt-6">
-        <Logo />
-      </div>
+      <Logo />
       <div className="flex items-center gap-2.5">
         <NavBar />
         <div className="relative">

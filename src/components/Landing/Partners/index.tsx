@@ -17,7 +17,7 @@ export const Partners = () => {
 
   return (
     <section className="py-6 w-full px-[clamp(1.25rem,_-2.417rem_+_7.639vw,_6.75rem)]">
-      <div className="max-w-[1704px] mx-auto px-6 relative">
+      <div className="max-w-[1704px] mx-auto relative">
         <div className="absolute -top-12 right-4 xs:-top-16 xs:right-8 md:right-16 flex items-center justify-between text-primary-1 xs:w-[100px] md:w-[150px] w-[45px] h-[40px] text-xl max-xs:text-[10px]">
           <div className="icon-arrow" />
           <div className="icon-arrow rotate-180" />
