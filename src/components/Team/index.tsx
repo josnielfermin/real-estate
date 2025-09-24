@@ -9,8 +9,10 @@ export const Team = () => {
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           <div className="lg:col-span-7">
-            <h3 className="text-white text-base font-medium">{title}</h3>
-            <h2 className="text-white text-3xl md:text-4xl font-extrabold mt-2">
+            <h3 className="text-white text-[clamp(1.5rem,_0rem_+_3.125vw,_3.75rem)] font-normal leading-[1.1]">
+              {title}
+            </h3>
+            <h2 className="text-white text-[clamp(1.5rem,_0rem_+_3.125vw,_3.75rem)] font-bold leading-[1.1]">
               {subtitle}
             </h2>
 

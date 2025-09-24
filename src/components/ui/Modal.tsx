@@ -80,14 +80,14 @@ export const Modal = ({
         className={`w-full md:max-w-3xl bg-transparent p-0 relative`}
       >
         <span
-          className="icon-x absolute top-9 right-10 cursor-pointer text-base-3 text-lg z-[5] w-6 h-6 flex items-center justify-center"
+          className="icon-x absolute top-9 right-10 cursor-pointer text-base-3 text-lg z-[5] w-6 h-6 flex items-center justify-center max-md:hidden"
           onClick={handleCloseModal}
           onTouchEnd={handleCloseModal}
         ></span>
 
         {/* Panel: on mobile slides from bottom using translateY; on md+ it stays centered (no translate) */}
         <div
-          className={`pointer-events-auto bg-[rgba(21,_20,_17,_0.70)] backdrop-blur-xl md:rounded-lg shadow-lg mx-auto max-w-full md:my-8 transform *:transition-all !duration-300 ease-in-out ${panelTransformClass} md:translate-y-0`}
+          className={`pointer-events-auto bg-transparent-2 rounded-t-4xl backdrop-blur-xl md:rounded-lg shadow-lg mx-auto max-w-full md:my-8 transform *:transition-all !duration-300 ease-in-out ${panelTransformClass} md:translate-y-0`}
           style={{
             width: "100%",
             maxWidth: 920,

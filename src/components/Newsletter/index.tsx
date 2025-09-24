@@ -17,10 +17,10 @@ export const Newsletter: React.FC = () => {
     <section className="py-20 px-6 md:px-12 lg:px-24">
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
         <div>
-          <h3 className="text-2xl md:text-3xl text-white font-light">
+          <h3 className="text-[clamp(1.5rem,_0rem_+_3.125vw,_3.75rem)] text-white font-normal leading-[1.1]">
             {Content.newsletter.title}
           </h3>
-          <h2 className="text-4xl md:text-5xl text-white font-bold leading-tight mt-2">
+          <h2 className="text-[clamp(1.5rem,_0rem_+_3.125vw,_3.75rem)] text-white font-bold leading-[1.1]">
             {Content.newsletter.subtitle}
           </h2>
           <p className="mt-4 text-base-2 text-sm max-w-md">

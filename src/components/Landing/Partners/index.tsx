@@ -5,11 +5,23 @@ export const Partners = () => {
   const logos = Content.partners.map((p) => p.logo);
 
   // Repetimos la secuencia para permitir un loop continuo
-  const repeated = [...logos, ...logos];
+  const repeated = [
+    ...logos,
+    ...logos,
+    ...logos,
+    ...logos,
+    ...logos,
+    ...logos,
+    ...logos,
+  ];
 
   return (
-    <section className="py-6 bg-primary-9">
-      <div className="max-w-7xl mx-auto px-6">
+    <section className="py-6 w-full px-[clamp(1.25rem,_-2.417rem_+_7.639vw,_6.75rem)]">
+      <div className="max-w-[1704px] mx-auto px-6 relative">
+        <div className="absolute -top-12 right-4 xs:-top-16 xs:right-8 md:right-16 flex items-center justify-between text-primary-1 xs:w-[100px] md:w-[150px] w-[45px] h-[40px] text-xl max-xs:text-[10px]">
+          <div className="icon-arrow" />
+          <div className="icon-arrow rotate-180" />
+        </div>
         <div
           className="overflow-hidden"
           role="region"

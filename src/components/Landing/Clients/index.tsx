@@ -7,9 +7,11 @@ export const Clients = () => {
   return (
     <section className="py-12">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
-        <div className="mb-8">
-          <h3 className="text-white text-base font-medium">{title}</h3>
-          <h2 className="text-white text-3xl md:text-4xl font-extrabold mt-2">
+        <div className="mb-8 leading-[1.1]">
+          <h3 className="text-white text-[clamp(1.5rem,_0rem_+_3.125vw,_3.75rem)] font-normal">
+            {title}
+          </h3>
+          <h2 className="text-white text-[clamp(1.5rem,_0rem_+_3.125vw,_3.75rem)] font-bold">
             {subtitle}
           </h2>
         </div>

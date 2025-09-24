@@ -30,9 +30,11 @@ export const MainArticle = () => {
           </div>
 
           {/* Right content */}
-          <div className="lg:col-span-8 text-white">
-            <h3 className="text-base font-medium">{title}</h3>
-            <h2 className="text-3xl md:text-4xl font-extrabold mt-2">
+          <div className="lg:col-span-8 text-white leading-[1.1]">
+            <h3 className="text-[clamp(1.5rem,_0rem_+_3.125vw,_3.75rem)] font-normal">
+              {title}
+            </h3>
+            <h2 className="text-[clamp(1.5rem,_0rem_+_3.125vw,_3.75rem)] font-bold">
               {subtitle}
             </h2>
 

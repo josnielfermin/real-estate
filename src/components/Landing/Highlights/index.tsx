@@ -5,13 +5,13 @@ export const Highlights = () => {
 
   return (
     <section className="py-12">
-      <div className="max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row items-center gap-8">
+      <div className="mx-auto px-6 md:px-12 flex flex-col md:flex-row items-center gap-8">
         {/* Left: headings */}
-        <div className="flex-1 text-left">
-          <h3 className="text-white text-2xl md:text-3xl font-medium">
+        <div className="flex-1 text-left leading-[1.1]">
+          <h3 className="text-white text-[clamp(1.5rem,_0rem_+_3.125vw,_3.75rem)] font-normal">
             {title}
           </h3>
-          <h2 className="text-white font-extrabold text-4xl md:text-5xl mt-2">
+          <h2 className="text-white font-bold text-[clamp(1.5rem,_0rem_+_3.125vw,_3.75rem)]">
             {subtitle}
           </h2>
         </div>

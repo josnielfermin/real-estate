@@ -1,6 +1,7 @@
 @theme inline {
   /* Dark Theme (default) */
   --color-primary-1: #e5d1a1;
+  --color-primary-2: #f0e9d9;
   --color-primary-3: #d3c209;
 
   --color-success-1: #064e3b;
@@ -27,6 +28,7 @@
   --color-base-6: #151411;
 
   --color-transparent-1: rgba(217, 217, 217, 0.1);
+  --color-transparent-2: rgba(0, 13, 36, 0.5);
 }
 
 @media (prefers-color-scheme: light) {

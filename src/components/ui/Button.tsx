@@ -42,7 +42,7 @@ export const Button: React.FC<ButtonProps> = ({
     "inline-flex items-center justify-center font-medium *:transition-all !duration-300 focus:outline-none relative overflow-hidden";
   const variants: Record<ButtonVariant, string> = {
     filled:
-      "bg-primary-1 text-base-6 hover:bg-white disabled:bg-gray-3 disabled:hover:bg-gray-3 disabled:text-gray-2",
+      "bg-primary-1 text-base-6 hover:bg-primary-2 disabled:bg-gray-3 disabled:hover:bg-gray-3 disabled:text-gray-2",
     outlined:
       "bg-transparent text-primary-3 hover:bg-primary-3/10 border border-primary-3 disabled:hover:bg-transparent disabled:text-gray-3 disabled:border-gray-3",
     basic:
@@ -52,7 +52,7 @@ export const Button: React.FC<ButtonProps> = ({
   const sizes: Record<ButtonSize, string> = {
     sm: `${
       label || (loading && loadingLabel) ? "px-3 py-1" : "w-8"
-    } text-sm h-8`,
+    } text-xs h-8`,
     md: `${
       label || (loading && loadingLabel) ? "px-4 py-2" : "w-10"
     } text-base h-10`,

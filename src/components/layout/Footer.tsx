@@ -1,5 +1,6 @@
 import { Logo } from "../Logo";
 import { NavBar } from "@/components/layout/NavBar";
+import { Content } from "@/components/content";
 
 export const Footer = () => {
   return (
@@ -18,24 +19,15 @@ export const Footer = () => {
         </nav>
 
         <div className="flex items-center gap-4">
-          <button
-            aria-label="Instagram"
-            className="text-white/90 hover:text-white"
-          >
-            <span className="icon-instagram" />
-          </button>
-          <button
-            aria-label="Facebook"
-            className="text-white/90 hover:text-white"
-          >
-            <span className="icon-facebook" />
-          </button>
-          <button
-            aria-label="WhatsApp"
-            className="text-white/90 hover:text-white"
-          >
-            <span className="icon-whatsapp" />
-          </button>
+          {Content.footer.socials.map((link) => (
+            <button
+              key={link.platform}
+              aria-label={link.platform}
+              className="text-white/90 hover:text-white text-2xl"
+            >
+              <span className={`${link.icon}`} />
+            </button>
+          ))}
         </div>
       </div>
     </footer>
