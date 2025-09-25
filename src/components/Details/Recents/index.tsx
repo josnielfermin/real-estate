@@ -69,8 +69,8 @@ export const Recents = () => {
   if (!displayed || displayed.length === 0) return null;
 
   return (
-    <section className="py-12">
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
+    <section className="py-[clamp(2rem,_-0.833rem_+_5.903vw,_6.25rem)] w-full px-[clamp(1.25rem,_-2.417rem_+_7.639vw,_6.75rem)]">
+      <div className="max-w-[1704px] w-full mx-auto">
         <div className="mb-6 flex items-baseline justify-between">
           <div>
             <h3 className="text-white text-base font-medium">Properties</h3>

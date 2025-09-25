@@ -4,7 +4,7 @@ export const Highlights = () => {
   const { title, subtitle, items } = Content.highlights;
 
   return (
-    <section className="py-12 px-[clamp(1.25rem,_-2.417rem_+_7.639vw,_6.75rem)] w-full">
+    <section className="py-[clamp(2rem,_-0.833rem_+_5.903vw,_6.25rem)] px-[clamp(1.25rem,_-2.417rem_+_7.639vw,_6.75rem)] w-full">
       <div className="mx-auto max-w-[1704px] flex flex-col md:flex-row md:items-center gap-8">
         {/* Left: headings */}
         <div className="flex-1 text-left leading-[1.1]">

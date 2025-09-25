@@ -49,7 +49,7 @@ export const Pros = () => {
   }, [items.length]);
 
   return (
-    <section className="py-12 w-full px-[clamp(1.25rem,_-2.417rem_+_7.639vw,_6.75rem)]">
+    <section className="py-[clamp(2rem,_-0.833rem_+_5.903vw,_6.25rem)] w-full px-[clamp(1.25rem,_-2.417rem_+_7.639vw,_6.75rem)]">
       <div className="max-w-[1704px] w-full mx-auto">
         <div className="mb-8 leading-[1.1]">
           <span className="text-white text-[clamp(1.5rem,_0rem_+_3.125vw,_3.75rem)] font-normal">
