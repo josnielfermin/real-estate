@@ -5,7 +5,7 @@ export const Banner = () => {
 
   return (
     <section className="w-full overflow-hidden">
-      <div className="relative w-full rounded-[12px] overflow-hidden h-[360px] md:h-[520px]">
+      <div className="relative w-full max-w-[1920px] overflow-hidden h-[360px] md:h-[520px]">
         <video
           src={video}
           className="absolute inset-0 w-full h-full object-cover"

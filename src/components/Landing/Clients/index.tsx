@@ -5,8 +5,8 @@ export const Clients = () => {
   const { items, title, subtitle } = Content.clients as any;
 
   return (
-    <section className="py-12">
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
+    <section className="py-12 w-full px-[clamp(1.25rem,_-2.417rem_+_7.639vw,_6.75rem)]">
+      <div className="max-w-[1704px] w-full mx-auto">
         <div className="mb-8 leading-[1.1]">
           <h3 className="text-white text-[clamp(1.5rem,_0rem_+_3.125vw,_3.75rem)] font-normal">
             {title}
@@ -16,7 +16,7 @@ export const Clients = () => {
           </h2>
         </div>
 
-        <div className="relative flex items-center justify-center gap-6 md:gap-10">
+        <div className="relative flex items-center justify-center gap-6 md:gap-10 max-w-[1545px] mx-auto">
           {items.map((c: any, idx: number) => {
             const isCenter = idx === 1; // center card (bigger)
             const decorator = isCenter
@@ -27,56 +27,55 @@ export const Clients = () => {
             return (
               <article
                 key={c.name}
-                className={`relative bg-[var(--color-base-1)] rounded-2xl p-6 text-center flex flex-col items-center max-w-xs md:max-w-sm ${
-                  isCenter ? "scale-105 shadow-2xl" : "scale-95"
+                className={`relative rounded-2xl p-6 text-center flex flex-col items-center ${
+                  isCenter ? "w-[538px] h-[521px]" : "w-[478px] h-[463px]"
                 }`}
-                style={{ minWidth: isCenter ? 320 : 260 }}
               >
                 {/* Decorator behind avatar */}
-                <div className="absolute -top-8 left-1/2 transform -translate-x-1/2">
+                <div className="absolute -translate-x-1/2 left-1/2 bottom-0 w-full h-full">
                   <Image
                     src={decorator}
                     alt="card decorator"
-                    width={isCenter ? 160 : 120}
-                    height={isCenter ? 160 : 120}
-                    className="object-contain"
+                    width={isCenter ? 538 : 478}
+                    height={isCenter ? 521 : 463}
+                    className="object-cover"
                     priority={isCenter}
                   />
                 </div>
 
                 {/* Avatar */}
-                <div className="relative mt-6 w-24 h-24 rounded-lg overflow-hidden border-2 border-transparent">
+                <div
+                  className={`relative -top-6 ${
+                    isCenter ? "w-[215px] h-[215px]" : "w-[192px] h-[192px]"
+                  } rounded-lg overflow-hidden`}
+                >
                   <Image
                     src={c.image}
                     alt={c.name}
-                    width={96}
-                    height={96}
+                    width={215}
+                    height={215}
                     className="object-cover"
                     priority={idx < 2}
                   />
                 </div>
 
-                <h4 className="mt-6 text-white text-lg font-medium">
+                <h4 className="mt-6 text-white text-[clamp(1.5rem,_1.167rem_+_0.694vw,_2rem)] font-medium">
                   {c.name}
                 </h4>
 
-                <p className="mt-3 text-sm text-white opacity-80 line-clamp-3 px-2">
+                <p className="mt-6 text-[clamp(0.625rem,_0.542rem_+_0.174vw,_0.75rem)] max-w-xs text-center text-white line-clamp-3 px-2">
                   {c.feedback}
                 </p>
 
-                <div className="mt-4 flex items-center justify-center gap-1">
+                <div className="mt-6 flex items-center justify-center gap-1">
                   {Array.from({ length: 5 }).map((_, i) => (
                     <span
                       key={i}
-                      className="icon-star"
-                      style={{
-                        color:
-                          i < starCount
-                            ? "var(--color-primary-3)"
-                            : "rgba(255,255,255,0.18)",
-                        fontSize: 14,
-                      }}
-                      aria-hidden
+                      className={`icon-star relative z-10 text-sm ${
+                        Number(i) < starCount
+                          ? "text-primary-3"
+                          : "text-[#000D24]"
+                      }`}
                     />
                   ))}
                 </div>
@@ -84,14 +83,6 @@ export const Clients = () => {
             );
           })}
         </div>
-
-        <style jsx>{`
-          section {
-          }
-          .icon-star {
-            display: inline-block;
-          }
-        `}</style>
       </div>
     </section>
   );

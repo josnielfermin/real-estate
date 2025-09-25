@@ -11,6 +11,9 @@ const properties = [
     addressDescription:
       "Apartment with 1 bedroom in Cavalli Tower, Dubai, UAE (axc-3990402)",
     description: "The Apartment is 868.32 ft² or 81 m², number of bedrooms: 1",
+    width: 547,
+    height: 252,
+    heightMobile: 152,
   },
   {
     title: "Property 2",
@@ -20,6 +23,9 @@ const properties = [
       "Apartment with 2 bedrooms in Cavalli Tower, Dubai, UAE (axc-3990403)",
     description:
       "The Apartment is 1,200.50 ft² or 111 m², number of bedrooms: 2",
+    width: 547,
+    height: 172,
+    heightMobile: 100,
   },
   {
     title: "Property 3",
@@ -29,6 +35,9 @@ const properties = [
       "Apartment with 3 bedrooms in Cavalli Tower, Dubai, UAE (axc-3990404)",
     description:
       "The Apartment is 1,500.75 ft² or 139 m², number of bedrooms: 3",
+    width: 547,
+    height: 252,
+    heightMobile: 152,
   },
   {
     title: "Property 4",
@@ -38,6 +47,9 @@ const properties = [
       "Apartment with 4 bedrooms in Cavalli Tower, Dubai, UAE (axc-3990405)",
     description:
       "The Apartment is 1,800.00 ft² or 167 m², number of bedrooms: 4",
+    width: 547,
+    height: 252,
+    heightMobile: 152,
   },
   {
     title: "Property 5",
@@ -47,6 +59,9 @@ const properties = [
       "Apartment with 5 bedrooms in Cavalli Tower, Dubai, UAE (axc-3990406)",
     description:
       "The Apartment is 2,000.00 ft² or 186 m², number of bedrooms: 5",
+    width: 547,
+    height: 252,
+    heightMobile: 152,
   },
   {
     title: "Property 6",
@@ -56,6 +71,9 @@ const properties = [
       "Apartment with 6 bedrooms in Cavalli Tower, Dubai, UAE (axc-3990407)",
     description:
       "The Apartment is 2,200.00 ft² or 204 m², number of bedrooms: 6",
+    width: 547,
+    height: 218,
+    heightMobile: 150,
   },
   {
     title: "Property 7",
@@ -65,6 +83,9 @@ const properties = [
       "Apartment with 7 bedrooms in Cavalli Tower, Dubai, UAE (axc-3990408)",
     description:
       "The Apartment is 2,400.00 ft² or 223 m², number of bedrooms: 7",
+    width: 547,
+    height: 164,
+    heightMobile: 100,
   },
 ];
 

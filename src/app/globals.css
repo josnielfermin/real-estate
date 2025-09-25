@@ -74,3 +74,32 @@ body {
   after:bg-no-repeat
   after:z-[-1];
 }
+
+/* Utility: hide scrollbar but keep scrolling (cross-browser) */
+.hide-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none !important; /* Chrome, Safari and Opera */
+}
+
+/* Optional directional helpers */
+.hide-scrollbar-y {
+  overflow-y: auto; /* ensure scrolling is enabled */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.hide-scrollbar-y::-webkit-scrollbar {
+  display: none !important;
+}
+
+.hide-scrollbar-x {
+  overflow-x: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.hide-scrollbar-x::-webkit-scrollbar {
+  display: none !important;
+}

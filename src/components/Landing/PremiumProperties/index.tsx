@@ -2,16 +2,34 @@ import Image from "next/image";
 import Link from "next/link";
 import { Content } from "@/components/content";
 import { Button } from "@/components/ui/Button";
+import useMediaQuery from "@/library/hooks/useMediaQuery";
 
 export const PremiumProperties = () => {
   const { title, subtitle, items } = Content.premiumProperties;
+  const isMobile = useMediaQuery("(max-width: 767px)");
 
   // Ensure we have a predictable number of items
   const displayed = items.slice(0, 7);
 
+  const getRowSpan = (prop: any) => {
+    const h = isMobile ? prop?.heightMobile : prop?.height;
+    let px = 320; // default
+
+    if (!h) px = 320;
+    else if (typeof h === "number") px = h;
+    else if (typeof h === "string") {
+      if (/^\d+$/.test(h)) px = parseInt(h, 10);
+      else if (h.endsWith("px")) px = parseInt(h, 10);
+      // si viniera en %, vh, etc. puedes normalizarlo o dejar default
+    }
+
+    // dividir entre el tamaño base (10px) para saber cuántas filas ocupa
+    return Math.ceil(px / 10);
+  };
+
   return (
-    <section className="py-12">
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
+    <section className="py-12 w-full px-[clamp(1.25rem,_-2.417rem_+_7.639vw,_6.75rem)]">
+      <div className="max-w-[1704px] w-full mx-auto">
         <div className="mb-8 leading-[1.1]">
           <h3 className="text-white text-[clamp(1.5rem,_0rem_+_3.125vw,_3.75rem)] font-normal">
             {title}
@@ -21,69 +39,54 @@ export const PremiumProperties = () => {
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {/* Hero large card (first item) */}
-          {displayed[0] && (
-            <article className="relative rounded-lg overflow-hidden md:row-span-2">
-              <Image
-                src={displayed[0].image}
-                alt={displayed[0].title}
-                width={900}
-                height={700}
-                className="object-cover w-full h-64 md:h-full"
-                priority
-              />
-
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
-
-              <div className="absolute left-6 bottom-6 z-10 text-white max-w-xs">
-                <h3 className="text-lg md:text-2xl font-bold">
-                  {displayed[0].title}
-                </h3>
-                <p className="text-sm mt-2 opacity-90">
-                  {displayed[0].addressDescription}
-                </p>
-                <div className="mt-4">
-                  <Link href="/contact-us">
-                    <Button
-                      ariaLabel={`Contact about ${displayed[0].title}`}
-                      label="Contact us"
-                      variant="filled"
-                      size="sm"
-                      radius="full"
-                      className="bg-[var(--color-primary-1)] text-black"
-                    />
-                  </Link>
-                </div>
-              </div>
-            </article>
-          )}
-
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
           {/* Remaining items */}
-          {displayed.slice(1).map((prop, idx) => (
-            <article
-              key={idx}
-              className={`relative rounded-lg overflow-hidden ${
-                idx === 1 ? "md:row-span-2" : ""
-              }`}
-            >
-              <Image
-                src={prop.image}
-                alt={prop.title}
-                width={600}
-                height={420}
-                className="object-cover w-full h-48 md:h-full"
-                priority={idx < 3}
-              />
+          {displayed.map((prop, idx) => {
+            const rowSpan = getRowSpan(prop);
+            return (
+              <article
+                key={idx}
+                className={`relative rounded-[20px] overflow-hidden bg-base-1 group`}
+                style={{ gridRow: `span ${rowSpan}` }}
+              >
+                <div className="relative w-full h-full">
+                  <Image
+                    src={prop.image}
+                    alt={prop.title}
+                    fill
+                    className="object-cover"
+                    sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw"
+                    priority={idx < 3}
+                  />
 
-              {/* Small overlay with title */}
-              <div className="absolute left-4 bottom-4 z-10 text-white max-w-xs">
-                <h4 className="text-sm md:text-base font-semibold">
-                  {prop.title}
-                </h4>
-              </div>
-            </article>
-          ))}
+                  <div className="absolute left-0 bottom-0 right-0 z-10 text-white w-full px-[clamp(0.375rem,_-0.375rem_+_1.563vw,_1.5rem)] py-[clamp(0.375rem,_-0.708rem_+_2.257vw,_2rem)] bg-[rgba(0,0,0,0.20)] backdrop-blur-[10px] transition-all !duration-300 group-hover:opacity-100 opacity-0">
+                    <h3 className="text-[clamp(0.75rem,_-0.083rem_+_1.736vw,_2rem)] font-bold">
+                      {prop.title}
+                    </h3>
+                    <p className="text-[clamp(0.5rem,_0.167rem_+_0.694vw,_1rem)] mt-2 max-md:mt-0.5">
+                      {prop.addressDescription}
+                    </p>
+                    <p className="text-[clamp(0.5rem,_0.167rem_+_0.694vw,_1rem)] mt-2 max-md:mt-0.5">
+                      {prop.description}
+                    </p>
+                    <div className="md:mt-4 max-md:mb-1">
+                      <Link href="/contact-us">
+                        <Button
+                          ariaLabel={`Contact about ${prop.title}`}
+                          label="Contact us"
+                          variant="filled"
+                          size="sm"
+                          radius={isMobile ? "md" : "full"}
+                          rightIcon={"icon-arrow-right"}
+                          className="max-md:text-[8px] max-md:h-4 max-md:px-1.5"
+                        />
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            );
+          })}
         </div>
 
         <div className="mt-8 flex justify-center">
@@ -94,23 +97,11 @@ export const PremiumProperties = () => {
               variant="filled"
               size="md"
               radius="full"
-              className="bg-[var(--color-primary-1)] text-black"
+              rightIcon="icon-arrow-right"
             />
           </Link>
         </div>
       </div>
-
-      <style jsx>{`
-        /* Make the grid visually similar: force the second item to span two rows on larger screens */
-        @media (min-width: 768px) {
-          .md\\:row-span-2 {
-            grid-row: span 2 / span 2;
-          }
-          .grid > article:nth-child(2) {
-            /* second direct child after hero fills center column top */
-          }
-        }
-      `}</style>
     </section>
   );
 };

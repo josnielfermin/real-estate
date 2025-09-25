@@ -20,73 +20,65 @@ export const Exclusive = () => {
   }, []);
 
   return (
-    <section className="relative rounded-[28px] overflow-hidden bg-black">
-      {/* Dark rectangular background visible hasta que el video este listo */}
-      <div
-        className="absolute inset-0 bg-black transition-opacity duration-700"
-        style={{ opacity: loaded ? 0 : 1 }}
-        aria-hidden
-      />
-
-      {/* Video de fondo (se vuelve visible cuando carga) */}
-      <video
-        ref={videoRef}
-        src={video}
-        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
-          loaded ? "opacity-100" : "opacity-0"
-        }`}
-        playsInline
-        loop
-        muted
-        autoPlay
-        preload="auto"
-        aria-hidden
-      />
-
-      {/* Overlay para asegurar legibilidad del texto */}
-      <div
-        className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/30 to-transparent pointer-events-none"
-        style={{ opacity: loaded ? 1 : 1 }}
-        aria-hidden
-      />
-
-      {/* Contenido principal */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 py-16 md:py-24">
-        <div className="max-w-3xl">
-          <span
-            className="inline-block px-3 py-1 rounded-full text-sm font-medium mb-4"
-            style={{ background: "var(--color-primary-1)", color: "#09121b" }}
-          >
-            Properties
-          </span>
-
-          <h2 className="text-white text-3xl md:text-4xl font-extrabold leading-tight">
-            {title}
-          </h2>
-
-          <p className="mt-4 text-white text-sm md:text-base opacity-90">
-            {description}
-          </p>
-
-          <div className="mt-8">
-            <Link href="/contact-us">
-              <Button
-                ariaLabel="Contact us"
-                label="Contact us"
-                variant="filled"
-                size="md"
-                radius="full"
-                className=""
-                style={{
-                  background: "var(--color-primary-1)",
-                  color: "white",
-                }}
-              />
-            </Link>
+    <div className="relative w-full px-[clamp(1.25rem,_-2.417rem_+_7.639vw,_6.75rem)]">
+      <section className="relative max-w-[1704px] md:h-[738px] w-full overflow-hidden rounded-[20px] flex md:items-center md:justify-start max-md:flex-col-reverse gap-4">
+        <div
+          className="absolute inset-0 bg-black transition-opacity duration-700 max-md:hidden"
+          style={{ opacity: loaded ? 0 : 1 }}
+          aria-hidden
+        />
+        <video
+          ref={videoRef}
+          src={video}
+          className={`md:absolute md:inset-0 w-full h-full rounded-[20px] object-cover transition-opacity duration-700 ${
+            loaded ? "opacity-100" : "opacity-100"
+          }`}
+          playsInline
+          loop
+          muted
+          autoPlay
+          preload="auto"
+          aria-hidden
+        />
+        <div
+          className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/30 to-transparent max-md:hidden pointer-events-none"
+          style={{ opacity: loaded ? 1 : 1 }}
+          aria-hidden
+        />
+        {/* Contenido principal */}
+        <div className="relative z-10 md:px-[clamp(1.25rem,_-2.25rem_+_7.292vw,_6.5rem)]">
+          <div className="">
+            <Button
+              ariaLabel="Properties"
+              label="Properties"
+              variant="filled"
+              size="sm"
+              radius="full"
+              className=""
+            />
+            <h2 className="text-white text-[clamp(1.5rem,_0.5rem_+_2.083vw,_3rem)] font-bold leading-tight max-w-[500px] mt-2">
+              {title}
+            </h2>
+            <p className="mt-4 text-white text-[clamp(0.75rem,_0.583rem_+_0.347vw,_1rem)] max-w-[590px]">
+              {description}
+            </p>
+            <div className="mt-6 max-md:hidden">
+              <Link href="/contact-us">
+                <Button
+                  ariaLabel="Contact us"
+                  label="Contact us"
+                  variant="filled"
+                  size="md"
+                  radius="full"
+                  rightIcon={"icon-arrow-right"}
+                  className=""
+                />
+              </Link>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   );
 };
 
