@@ -33,7 +33,7 @@ export const Team = () => {
                     />
                   </div>
 
-                  <div className="absolute bottom-0 right-0 left-0 text-white z-10 bg-[rgba(0,_0,_0,_0.30)] backdrop-blur-[10px] w-full">
+                  <div className="absolute bottom-0 right-0 left-0 text-white z-10 bg-[rgba(0,_0,_0,_0.30)] backdrop-blur-[10px] w-full px-[clamp(0.5rem,_0rem_+_1.042vw,_1.25rem)] py-[clamp(0.625rem,_0rem_+_1.302vw,_1.563rem)]">
                     <h4 className="text-lg font-semibold">{m.name}</h4>
                     <div className="text-xs text-white/80 mt-2">
                       <div>Experience: {m.experience}</div>
