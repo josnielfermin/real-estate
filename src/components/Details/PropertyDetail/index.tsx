@@ -102,7 +102,7 @@ export const PropertyDetail: React.FC = () => {
               <h2 className="text-4xl md:text-5xl font-extrabold">
                 {item.title}
               </h2>
-              <div className="hidden md:block h-[2px] flex-1 mx-6 bg-[rgba(255,255,255,0.06)]" />
+              <div className="hidden md:block h-[2px] flex-1 mx-6 bg-primary-1" />
             </div>
 
             <p className="mt-4 text-sm md:text-base text-white/90 max-w-prose">

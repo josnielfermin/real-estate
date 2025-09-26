@@ -1,20 +1,21 @@
 import Image from "next/image";
-import Link from "next/link";
 import { Content } from "@/components/content";
-import { Button } from "@/components/ui/Button";
+import useMediaQuery from "@/library/hooks/useMediaQuery";
 
 const renderContentElement = (el: any, idx: number) => {
+  const isMobile = useMediaQuery("(max-width: 767px)");
+
   if (!el) return null;
   switch (el.type) {
     case "text":
       return (
-        <p key={idx} className="mb-6 text-sm md:text-base text-white/90">
+        <p key={idx} className="mb-6 text-base font-normal text-white">
           {el.text}
         </p>
       );
     case "image":
       return (
-        <div key={idx} className="mb-6 w-full rounded-lg overflow-hidden">
+        <div key={idx} className="w-full rounded-[20px] overflow-hidden ">
           <Image
             src={el.image}
             alt={`article-image-${idx}`}
@@ -28,7 +29,7 @@ const renderContentElement = (el: any, idx: number) => {
       return (
         <ul
           key={idx}
-          className="mb-6 list-disc list-inside text-sm text-white/80 space-y-2"
+          className="mb-6 list-disc list-inside text-sm text-white space-y-2"
         >
           {(el.items || []).map((it: string, i: number) => (
             <li key={i}>{it}</li>
@@ -44,9 +45,15 @@ const renderContentElement = (el: any, idx: number) => {
     case "container":
       // container with columns: each column has width and children
       return (
-        <div key={idx} className="mb-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div
+          key={idx}
+          className="mb-6 flex md:items-center gap-6 w-full max-md:flex-col"
+        >
           {(el.columns || []).map((col: any, ci: number) => (
-            <div key={ci} style={{ width: col.width || "auto" }}>
+            <div
+              key={ci}
+              style={{ width: isMobile ? "100%" : col.width || "auto" }}
+            >
               {(col.children || []).map((child: any, chi: number) =>
                 renderContentElement(child, `${idx}-${ci}-${chi}` as any)
               )}
@@ -69,30 +76,27 @@ export const ArticleDetail: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Left column - small image and meta */}
           <div className="lg:col-span-3">
-            <div className="rounded-xl overflow-hidden bg-[var(--color-base-1)] p-4">
-              <div className="w-full h-40 md:h-56 rounded-lg overflow-hidden">
+            <div className="rounded-[20px] overflow-hidden bg-[var(--color-base-1)] p-4">
+              <div className="w-full h-[clamp(21.188rem,_9.521rem_+_24.306vw,_38.688rem)] rounded-[20px] overflow-hidden">
                 <Image
                   src={article.image}
                   alt={article.title}
-                  fill={false}
-                  width={520}
-                  height={420}
-                  className="object-cover w-full h-full"
+                  width={339}
+                  height={619}
+                  className="object-cover object-top w-full h-full"
                 />
-              </div>
-
-              <div className="mt-4 text-white/80 text-sm">
-                <div className="font-semibold">{article.title}</div>
-                <div className="mt-1">{article.subtitle}</div>
               </div>
             </div>
           </div>
 
           {/* Main content */}
           <div className="lg:col-span-9 text-white">
-            <h1 className="text-[clamp(1.5rem,_1rem_+_1.042vw,_2.25rem)] font-bold leading-tight">
-              {article.title}
-            </h1>
+            <div className="flex items-center justify-between">
+              <h1 className="text-[clamp(1.5rem,_1rem_+_1.042vw,_2.25rem)] font-bold leading-tight">
+                {article.title}
+              </h1>
+              <div className="hidden md:block h-[2px] flex-1 mx-6 bg-primary-1" />
+            </div>
             <h2 className="text-[clamp(1.5rem,_1rem_+_1.042vw,_2.25rem)] font-normal mt-2 text-white">
               {article.subtitle}
             </h2>
@@ -102,38 +106,9 @@ export const ArticleDetail: React.FC = () => {
                 renderContentElement(c, i)
               )}
             </div>
-
-            <div className="mt-8 flex items-center gap-4">
-              <Link href="/blog">
-                <Button
-                  ariaLabel="Back to blog"
-                  label="Back to Blog"
-                  variant="outlined"
-                  size="md"
-                  radius="full"
-                />
-              </Link>
-
-              <Link href="/contact-us">
-                <Button
-                  ariaLabel="Contact us about article"
-                  label="Contact Us"
-                  variant="filled"
-                  size="md"
-                  radius="full"
-                  className="bg-[var(--color-primary-1)] text-black"
-                />
-              </Link>
-            </div>
           </div>
         </div>
       </div>
-
-      <style jsx>{`
-        .prose img {
-          border-radius: 12px;
-        }
-      `}</style>
     </article>
   );
 };

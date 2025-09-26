@@ -14,7 +14,7 @@ export const MainArticle = () => {
       <div className="max-w-[1704px] w-full mx-auto">
         <div className="flex items-start max-md:flex-col gap-8">
           {/* Left image */}
-          <div className="rounded-[20px] overflow-hidden max-md:w-full md:!w-[clamp(18.75rem,_11.75rem_+_14.583vw,_29.25rem)] max-md:max-h-[420px]">
+          <div className="rounded-[20px] overflow-hidden max-md:w-full md:!w-[clamp(18.75rem,_11.75rem_+_14.583vw,_29.25rem)] max-md:max-h-[420px] relative">
             <Image
               src={image}
               alt={title}
@@ -23,6 +23,7 @@ export const MainArticle = () => {
               className="w-full h-full object-top object-cover"
               priority
             />
+            <div className="bg-[linear-gradient(180deg,_rgba(0,_13,_36,_0.00)_0%,_#000D24_100%)] w-full h-[412px] absolute bottom-[-150px] left-0 right-0"></div>
           </div>
 
           {/* Right content */}

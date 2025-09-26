@@ -34,9 +34,6 @@ export default function Home() {
       <Team />
       <Questions />
       <Newsletter />
-
-      {/* <main className="w-full">
-      </main> */}
     </div>
   );
 }
