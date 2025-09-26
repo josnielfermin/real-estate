@@ -6,36 +6,39 @@ export const Team = () => {
 
   return (
     <section className="py-[clamp(2rem,_-0.833rem_+_5.903vw,_6.25rem)] w-full px-[clamp(1.25rem,_-2.417rem_+_7.639vw,_6.75rem)] relative">
-      <div className="max-w-[1704px] w-full mx-auto">
+      <div className="max-w-[1704px] w-full mx-auto md:pb-40">
         <div className="flex items-center gap-8">
-          <div className="lg:col-span-7">
-            <h3 className="text-white text-[clamp(1.5rem,_0rem_+_3.125vw,_3.75rem)] font-normal leading-[1.1]">
-              {title}
-            </h3>
-            <h2 className="text-white text-[clamp(1.5rem,_0rem_+_3.125vw,_3.75rem)] font-bold leading-[1.1]">
-              {subtitle}
-            </h2>
+          <div className="w-full">
+            <div className="max-md:flex gap-1">
+              <h3 className="text-white text-[clamp(1.5rem,_0rem_+_3.125vw,_3.75rem)] font-normal leading-[1.1]">
+                {title}
+              </h3>
+              <h2 className="text-white text-[clamp(1.5rem,_0rem_+_3.125vw,_3.75rem)] font-bold leading-[1.1]">
+                {subtitle}
+              </h2>
+            </div>
 
-            <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="mt-8 flex items-center max-md:justify-center gap-6 max-w-[1545px] mx-auto w-full">
               {members.map((m: any, idx: number) => (
                 <article
                   key={m.name}
-                  className="relative rounded-2xl overflow-hidden bg-base-1 p-6 flex flex-col min-w-[428px] min-h-[485px]"
+                  className="relative rounded-2xl overflow-hidden bg-base-1 p-6 flex flex-col w-[clamp(20rem,_15.5rem_+_9.375vw,_26.75rem)] h-[clamp(17.5rem,_8.958rem_+_17.795vw,_30.313rem)]"
                 >
                   <div className="w-full h-full rounded-[20px] overflow-hidden">
                     <Image
                       src={m.image}
                       alt={m.name}
                       fill
-                      className="object-cover"
-                      sizes="(min-width:1024px) 45vw, 100vw"
+                      className="object-cover object-top"
                       priority={idx === 0}
                     />
                   </div>
 
                   <div className="absolute bottom-0 right-0 left-0 text-white z-10 bg-[rgba(0,_0,_0,_0.30)] backdrop-blur-[10px] w-full px-[clamp(0.5rem,_0rem_+_1.042vw,_1.25rem)] py-[clamp(0.625rem,_0rem_+_1.302vw,_1.563rem)]">
-                    <h4 className="text-lg font-semibold">{m.name}</h4>
-                    <div className="text-xs text-white/80 mt-2">
+                    <h4 className="text-[clamp(0.5rem,_0rem_+_1.042vw,_1.25rem)] font-bold">
+                      {m.name}
+                    </h4>
+                    <div className="text-[clamp(0.375rem,_0.042rem_+_0.694vw,_0.875rem)] font-normal text-white mt-2">
                       <div>Experience: {m.experience}</div>
                       <div>Specialization: {m.specialization}</div>
                       <div>Languages: {m.languages.join(", ")}</div>
@@ -48,7 +51,7 @@ export const Team = () => {
         </div>
       </div>
       {/* Decorative right column */}
-      <div className="absolute right-0 bottom-0 w-full h-full max-w-[2066px] max-h-[1175px] overflow-hidden -z-10 pointer-events-none">
+      <div className="absolute right-0 bottom-0 w-full h-full max-w-[2066px] max-h-[1175px] overflow-hidden -z-10 pointer-events-none max-md:hidden">
         <Image
           src="/static/images/team/build-decorator.png"
           alt="decorative building"

@@ -3,7 +3,7 @@ import useMediaQuery from "@/library/hooks/useMediaQuery";
 import { Logo } from "../Logo";
 import { Button } from "@/components/ui/Button";
 import { NavBar } from "@/components/layout/NavBar";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export const languages = [
   { code: "en", label: "English" },
@@ -46,6 +46,16 @@ export const Header = ({
   const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState("en");
   const isMobile = useMediaQuery("(max-width: 767px)");
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 0);
+    // initialise
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   const languageIcon = isMobile ? (
     <div className="icon-translate" />
   ) : (
@@ -53,7 +63,13 @@ export const Header = ({
   );
 
   return (
-    <header className="w-full flex items-center justify-between gap-4 px-[clamp(1.25rem,_-2.417rem_+_7.639vw,_6.75rem)] py-4 h-[108px] max-md:h-[82px]">
+    <header
+      className={`w-full flex items-center justify-between gap-4 px-[clamp(1.25rem,_-2.417rem_+_7.639vw,_6.75rem)] py-4 h-[108px] max-md:h-[82px] transition-all !duration-300 z-50 ${
+        scrolled
+          ? "backdrop-blur-[10px] bg-black/20 fixed -top-1 left-0 right-0"
+          : ""
+      }`}
+    >
       <Logo />
       <div className="flex items-center gap-2.5">
         <NavBar />

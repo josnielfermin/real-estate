@@ -90,10 +90,10 @@ export const ArticleDetail: React.FC = () => {
 
           {/* Main content */}
           <div className="lg:col-span-9 text-white">
-            <h1 className="text-3xl md:text-4xl font-extrabold leading-tight">
+            <h1 className="text-[clamp(1.5rem,_1rem_+_1.042vw,_2.25rem)] font-bold leading-tight">
               {article.title}
             </h1>
-            <h2 className="text-lg md:text-xl font-light mt-2 text-white/90">
+            <h2 className="text-[clamp(1.5rem,_1rem_+_1.042vw,_2.25rem)] font-normal mt-2 text-white">
               {article.subtitle}
             </h2>
 
