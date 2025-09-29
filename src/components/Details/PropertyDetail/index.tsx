@@ -5,7 +5,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { Content } from "@/components/content";
 import { Button } from "@/components/ui/Button";
-import DecoratorSVG from "./DecoratorSVG";
 
 export const PropertyDetail: React.FC = () => {
   const properties = (Content.properties as any[]) || [];
