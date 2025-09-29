@@ -53,7 +53,9 @@ export const Cover = () => {
             width={350}
             height={251}
             className={`rounded-[28px] absolute right-0 bottom-0 xs:hidden transition-all !duration-600 ${
-              burjKhalifaVisible ? "opacity-100" : "opacity-0"
+              burjKhalifaVisible
+                ? "translate-y-0 opacity-100"
+                : "translate-y-[612px] opacity-0"
             }`}
             priority
             onLoad={() => setBurjKhalifaVisible(true)}
