@@ -353,6 +353,7 @@ export const Content = {
   properties: [
     {
       title: "Cavalli Tower",
+      image: "/static/images/premium-properties/calvalli-tower.png",
       items: [
         {
           type: "text",
@@ -362,13 +363,10 @@ export const Content = {
           type: "text",
           text: "Boutique 23 caters to a lifestyle that transcends the typical, offering a vibrant experience that sets new standards. This 23-story complex harmoniously blends cozy residences, premium office spaces, retail, and luxury amenities to highlight the modern urban lifestyle.",
         },
+        { type: "highlight", text: "Building highlights" },
         {
-          type: "highlight",
-          text: "Building highlights",
-        },
-        {
-          type: "highlight",
-          text: "Building highlights",
+          type: "text",
+          text: "Boutique 23 has a contemporary design with a sleek look of glass and concrete elements. It offers a luxurious living experience with excellent facilities for a contemporary lifestyle:",
         },
         {
           type: "list",
@@ -383,18 +381,66 @@ export const Content = {
         },
       ],
       features: [
+        { title: "Private pool", icon: "icon-swim" },
+        { title: "Gym", icon: "icon-gym" },
+        { title: "Swimming pool", icon: "icon-pool-stairs" },
+      ],
+    },
+    {
+      title: "Modern Residence",
+      image: "/static/images/premium-properties/image-2.png",
+      items: [
         {
-          title: "Private pool",
-          icon: "icon-swim",
+          type: "text",
+          text: "An elegant modern residence located in a premium district, offering panoramic views and refined finishes.",
         },
+        { type: "highlight", text: "Property highlights" },
         {
-          title: "Gym",
-          icon: "icon-gym",
+          type: "list",
+          items: ["Concierge service", "Private parking", "Rooftop terrace"],
         },
+      ],
+      features: [
+        { title: "Parking", icon: "icon-parking" },
+        { title: "Gym", icon: "icon-gym" },
+      ],
+    },
+    {
+      title: "Skyline Villa",
+      image: "/static/images/premium-properties/image-3.png",
+      items: [
         {
-          title: "Swimming pool",
-          icon: "icon-pool-stairs",
+          type: "text",
+          text: "Luxurious villa with skyline views, large terraces and an open-plan living area.",
         },
+        { type: "highlight", text: "Villa features" },
+        {
+          type: "list",
+          items: ["Private garden", "Infinity pool", "Home automation"],
+        },
+      ],
+      features: [
+        { title: "Private pool", icon: "icon-swim" },
+        { title: "Home automation", icon: "icon-smart" },
+      ],
+    },
+    {
+      title: "Harbour Apartments",
+      image: "/static/images/premium-properties/image-4.png",
+      items: [
+        {
+          type: "text",
+          text: "Stylish apartments by the harbour with easy access to retail and dining.",
+        },
+        { type: "highlight", text: "Apartment perks" },
+        {
+          type: "list",
+          items: ["Waterfront access", "Shared gym", "24/7 security"],
+        },
+      ],
+      features: [
+        { title: "Security", icon: "icon-shield" },
+        { title: "Gym", icon: "icon-gym" },
       ],
     },
   ],

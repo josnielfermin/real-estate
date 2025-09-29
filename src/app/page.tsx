@@ -10,7 +10,7 @@ import { Banner } from "@/components/Landing/Banner";
 import { Clients } from "@/components/Landing/Clients";
 import { MainArticle } from "@/components/Landing/MainArticle";
 import { Blog } from "@/components/Landing/Blog";
-import { Team } from "@/components/Team";
+import { Team } from "@/components/Landing/Team";
 import { Questions } from "@/components/Questions";
 import Newsletter from "@/components/Newsletter";
 import { Footer } from "@/components/layout/Footer";

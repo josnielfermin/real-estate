@@ -3,9 +3,11 @@
 import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
 import { Content } from "@/components/content";
+import useMediaQuery from "@/library/hooks/useMediaQuery";
 
 export const Pros = () => {
   const { title, subtitle, items } = Content.pros;
+  const isMobile = useMediaQuery("(max-width: 767px)");
 
   // refs for each card
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -70,14 +72,14 @@ export const Pros = () => {
               ref={(el: HTMLDivElement | null) => {
                 itemRefs.current[idx] = el;
               }}
-              className="relative rounded-lg overflow-hidden shadow-lg bg-base-1 w-full h-[clamp(11.75rem,_2.917rem_+_18.403vw,_25rem)] min-w-[141px]"
+              className="relative rounded-[20px] overflow-hidden shadow-lg bg-base-1 w-full h-[clamp(11.75rem,_2.917rem_+_18.403vw,_25rem)] min-w-[141px] group"
             >
               <div className="relative w-full h-full">
                 <Image
                   src={it.image}
                   alt={it.title}
                   fill
-                  className="object-cover"
+                  className="object-cover group-hover:scale-110 transition-all !duration-300"
                 />
 
                 {/* base gradient overlay (below dark-mask, below text) */}

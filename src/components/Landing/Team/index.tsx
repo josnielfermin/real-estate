@@ -22,14 +22,14 @@ export const Team = () => {
               {members.map((m: any, idx: number) => (
                 <article
                   key={m.name}
-                  className="relative rounded-2xl overflow-hidden bg-base-1 p-6 flex flex-col w-[clamp(20rem,_15.5rem_+_9.375vw,_26.75rem)] h-[clamp(17.5rem,_8.958rem_+_17.795vw,_30.313rem)]"
+                  className="relative rounded-2xl overflow-hidden bg-base-1 p-6 flex flex-col w-[clamp(20rem,_15.5rem_+_9.375vw,_26.75rem)] h-[clamp(17.5rem,_8.958rem_+_17.795vw,_30.313rem)] group"
                 >
                   <div className="w-full h-full rounded-[20px] overflow-hidden">
                     <Image
                       src={m.image}
                       alt={m.name}
                       fill
-                      className="object-cover object-top"
+                      className="object-cover object-top group-hover:scale-110 transition-all !duration-300"
                       priority={idx === 0}
                     />
                   </div>
