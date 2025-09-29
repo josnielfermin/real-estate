@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Content } from "@/components/content";
@@ -7,11 +8,18 @@ import useMediaQuery from "@/library/hooks/useMediaQuery";
 export const Cover = () => {
   const { title, subtitle } = Content.cover;
   const isMobile = useMediaQuery("(max-width: 767px)");
+  const [burjKhalifaVisible, setBurjKhalifaVisible] = useState(false);
   return (
     <div className="w-full px-[clamp(1.25rem,_-2.417rem_+_7.639vw,_6.75rem)] max-md:mt-4">
       <section className="relative overflow-hidden rounded-[28px] max-w-[1704px] w-full mx-auto h-[612px] max-xs:h-[400px] flex items-center px-[clamp(0.875rem,_-1.458rem_+_4.861vw,_4.375rem)] max-md:pt-[35px] max-md:items-start">
         {/* fondo decorativo */}
-        <div className="absolute inset-0 cover">
+        <div
+          className={`absolute inset-0 cover transition-all !duration-300 ${
+            burjKhalifaVisible
+              ? "opacity-100 after:opacity-100"
+              : "before:opacity-0 opacity-0"
+          }`}
+        >
           {/* <Image
             src="/static/images/cover/cover-background.png"
             alt="cover background"
@@ -31,20 +39,34 @@ export const Cover = () => {
             alt="Burj Khalifa"
             width={852}
             height={612}
-            className="rounded-[28px] absolute right-0 bottom-0 max-xs:hidden"
+            className={`rounded-[28px] absolute right-0 bottom-0 max-xs:hidden transition-all !duration-600 ${
+              burjKhalifaVisible
+                ? "translate-y-0 opacity-100"
+                : "translate-y-[612px] opacity-0"
+            }`}
             priority
+            onLoad={() => setBurjKhalifaVisible(true)}
           />
           <Image
             src="/static/images/cover/burj-khalifa-mobile.png"
             alt="Burj Khalifa"
             width={350}
             height={251}
-            className="rounded-[28px] absolute right-0 bottom-0 xs:hidden"
+            className={`rounded-[28px] absolute right-0 bottom-0 xs:hidden transition-all !duration-600 ${
+              burjKhalifaVisible ? "opacity-100" : "opacity-0"
+            }`}
             priority
+            onLoad={() => setBurjKhalifaVisible(true)}
           />
           <div className="absolute inset-0" />
         </div>
-        <div className="flex items-center gap-8">
+        <div
+          className={`flex items-center gap-8 transition-all !duration-600 ${
+            burjKhalifaVisible
+              ? "opacity-100 translate-x-0"
+              : "opacity-0 translate-x-[-300px]"
+          }`}
+        >
           {/* Texto principal */}
           <div className="flex-1 text-white max-w-xl">
             <h2 className="text-[clamp(2rem,_0.833rem_+_2.431vw,_3.75rem)] font-normal leading-[1.1] max-md:leading-[1] max-w-[325px]">
