@@ -108,10 +108,36 @@ export const Content = {
       url: "/sustainability",
     },
   ],
-  cover: {
-    title: "Your New Beginning",
-    subtitle: "Starts Here",
-  },
+  cover: [
+    {
+      title: "Your New Beginning",
+      subtitle: "Starts Here",
+      image: {
+        url: "/static/images/cover/burj-khalifa.png",
+        width: 852,
+        height: 612,
+      },
+      imageMobile: {
+        url: "/static/images/cover/burj-khalifa-mobile.png",
+        width: 350,
+        height: 251,
+      },
+    },
+    {
+      title: "Your New Beginning",
+      subtitle: "Starts Here",
+      image: {
+        url: "/static/images/cover/yash-savla.png",
+        width: 852,
+        height: 612,
+      },
+      imageMobile: {
+        url: "/static/images/cover/yash-savla-mobile.png",
+        width: 350,
+        height: 251,
+      },
+    },
+  ],
   partners: [
     {
       name: "Partner 1",

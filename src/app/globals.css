@@ -53,8 +53,8 @@ body {
 
 .cover {
   @apply absolute w-full
-  before:bg-[url("/static/images/cover/mask.svg")]
-  max-xs:before:bg-[url("/static/images/cover/mask-mobile.svg")]
+  before:bg-[url("/static/images/cover/mask.png")]
+  max-xs:before:bg-[url("/static/images/cover/mask-mobile.png")]
   before:w-[0%]
   before:h-full
   before:absolute
@@ -62,8 +62,8 @@ body {
   /* before:bg-cover */
   before:left-0
 
-  after:bg-[url("/static/images/cover/mask.svg")]
-  max-xs:after:bg-[url("/static/images/cover/mask-mobile.svg")]
+  after:bg-[url("/static/images/cover/mask.png")]
+  max-xs:after:bg-[url("/static/images/cover/mask-mobile.png")]
   after:h-full
   after:w-[100%]
   after:right-0
