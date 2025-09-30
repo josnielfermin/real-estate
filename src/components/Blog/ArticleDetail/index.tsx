@@ -1,74 +1,86 @@
+"use client";
+
+import React, { useCallback } from "react";
 import Image from "next/image";
 import { Content } from "@/components/content";
 import useMediaQuery from "@/library/hooks/useMediaQuery";
 
-const renderContentElement = (el: any, idx: number) => {
-  const isMobile = useMediaQuery("(max-width: 767px)");
-
-  if (!el) return null;
-  switch (el.type) {
-    case "text":
-      return (
-        <p key={idx} className="mb-6 text-base font-normal text-white">
-          {el.text}
-        </p>
-      );
-    case "image":
-      return (
-        <div key={idx} className="w-full rounded-[20px] overflow-hidden ">
-          <Image
-            src={el.image}
-            alt={`article-image-${idx}`}
-            width={900}
-            height={520}
-            className="object-cover w-full h-auto"
-          />
-        </div>
-      );
-    case "list":
-      return (
-        <ul
-          key={idx}
-          className="mb-6 list-disc list-inside text-sm text-white space-y-2"
-        >
-          {(el.items || []).map((it: string, i: number) => (
-            <li key={i}>{it}</li>
-          ))}
-        </ul>
-      );
-    case "highlight":
-      return (
-        <div key={idx} className="mb-4 text-sm font-semibold text-white">
-          {el.text}
-        </div>
-      );
-    case "container":
-      // container with columns: each column has width and children
-      return (
-        <div
-          key={idx}
-          className="mb-6 flex md:items-center gap-6 w-full max-md:flex-col"
-        >
-          {(el.columns || []).map((col: any, ci: number) => (
-            <div
-              key={ci}
-              style={{ width: isMobile ? "100%" : col.width || "auto" }}
-            >
-              {(col.children || []).map((child: any, chi: number) =>
-                renderContentElement(child, `${idx}-${ci}-${chi}` as any)
-              )}
-            </div>
-          ))}
-        </div>
-      );
-    default:
-      return null;
-  }
-};
+type AnyEl = any;
 
 export const ArticleDetail: React.FC = () => {
+  const isMobile = useMediaQuery("(max-width: 767px)");
   const article = Content.articleDetail as any;
   if (!article) return null;
+
+  const renderContentElement = useCallback(
+    (el: AnyEl, key: React.Key) => {
+      if (!el) return null;
+
+      switch (el.type) {
+        case "text":
+          return (
+            <p key={key} className="mb-6 text-base font-normal text-white">
+              {el.text}
+            </p>
+          );
+
+        case "image":
+          return (
+            <div key={key} className="w-full rounded-[20px] overflow-hidden ">
+              <Image
+                src={el.image}
+                alt={`article-image-${key}`}
+                width={900}
+                height={520}
+                className="object-cover w-full h-auto"
+              />
+            </div>
+          );
+
+        case "list":
+          return (
+            <ul
+              key={key}
+              className="mb-6 list-disc list-inside text-sm text-white space-y-2"
+            >
+              {(el.items || []).map((it: string, i: number) => (
+                <li key={i}>{it}</li>
+              ))}
+            </ul>
+          );
+
+        case "highlight":
+          return (
+            <div key={key} className="mb-4 text-sm font-semibold text-white">
+              {el.text}
+            </div>
+          );
+
+        case "container":
+          return (
+            <div
+              key={key}
+              className="mb-6 flex md:items-center gap-6 w-full max-md:flex-col"
+            >
+              {(el.columns || []).map((col: AnyEl, ci: number) => (
+                <div
+                  key={ci}
+                  style={{ width: isMobile ? "100%" : col.width || "auto" }}
+                >
+                  {(col.children || []).map((child: AnyEl, chi: number) =>
+                    renderContentElement(child, `${key}-${ci}-${chi}`)
+                  )}
+                </div>
+              ))}
+            </div>
+          );
+
+        default:
+          return null;
+      }
+    },
+    [isMobile]
+  );
 
   return (
     <article className="py-[clamp(2rem,_-0.833rem_+_5.903vw,_6.25rem)] w-full px-[clamp(1.25rem,_-2.417rem_+_7.639vw,_6.75rem)]">
@@ -102,7 +114,7 @@ export const ArticleDetail: React.FC = () => {
             </h2>
 
             <div className="mt-6 prose prose-invert max-w-none text-sm md:text-base">
-              {(article.content || []).map((c: any, i: number) =>
+              {(article.content || []).map((c: AnyEl, i: number) =>
                 renderContentElement(c, i)
               )}
             </div>
