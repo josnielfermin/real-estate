@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Content } from "@/components/content";
@@ -11,6 +11,11 @@ export const Blog = () => {
   const trackRef = useRef<HTMLDivElement | null>(null);
   const itemWidth = 360; // width per slide including gap
   const autoplayRef = useRef<number | null>(null);
+
+  const [isDragging, setIsDragging] = useState(false);
+  const isDownRef = useRef(false);
+  const startXRef = useRef(0);
+  const scrollLeftRef = useRef(0);
 
   const scrollNext = (steps = 1) => {
     const el = trackRef.current;
@@ -23,43 +28,100 @@ export const Blog = () => {
     el.scrollBy({ left: -itemWidth * steps, behavior: "smooth" });
   };
 
-  useEffect(() => {
-    const start = () => {
-      stopAutoplay();
-      autoplayRef.current = window.setInterval(() => {
-        const el = trackRef.current;
-        if (!el) return;
-        // if near end, scroll back to start smoothly
-        if (el.scrollLeft + el.clientWidth >= el.scrollWidth - 10) {
-          el.scrollTo({ left: 0, behavior: "smooth" });
-        } else {
-          scrollNext(1);
-        }
-      }, 4000);
-    };
-    const stop = () => stopAutoplay();
-
-    const el = trackRef.current;
-    if (el) {
-      el.addEventListener("mouseenter", stop);
-      el.addEventListener("mouseleave", start);
-    }
-
-    start();
-    return () => {
-      stopAutoplay();
-      if (el) {
-        el.removeEventListener("mouseenter", stop);
-        el.removeEventListener("mouseleave", start);
-      }
-    };
-  }, []);
-
   const stopAutoplay = () => {
     if (autoplayRef.current) {
       window.clearInterval(autoplayRef.current);
       autoplayRef.current = null;
     }
+  };
+
+  const startAutoplay = () => {
+    stopAutoplay();
+    autoplayRef.current = window.setInterval(() => {
+      const el = trackRef.current;
+      if (!el) return;
+      // if near end, scroll back to start smoothly
+      if (el.scrollLeft + el.clientWidth >= el.scrollWidth - 10) {
+        el.scrollTo({ left: 0, behavior: "smooth" });
+      } else {
+        scrollNext(1);
+      }
+    }, 4000);
+  };
+
+  useEffect(() => {
+    const el = trackRef.current;
+    const mouseEnterHandler = () => stopAutoplay();
+    const mouseLeaveHandler = () => startAutoplay();
+
+    if (el) {
+      el.addEventListener("mouseenter", mouseEnterHandler);
+      el.addEventListener("mouseleave", mouseLeaveHandler);
+    }
+
+    startAutoplay();
+
+    return () => {
+      stopAutoplay();
+      if (el) {
+        el.removeEventListener("mouseenter", mouseEnterHandler);
+        el.removeEventListener("mouseleave", mouseLeaveHandler);
+      }
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // Mouse drag handlers
+  const handleMouseDown = (e: any) => {
+    const el = trackRef.current;
+    if (!el) return;
+    e.preventDefault();
+    isDownRef.current = true;
+    setIsDragging(true);
+    startXRef.current = e.pageX - el.offsetLeft;
+    scrollLeftRef.current = el.scrollLeft;
+    stopAutoplay();
+  };
+
+  const handleMouseMove = (e: any) => {
+    const el = trackRef.current;
+    if (!el || !isDownRef.current) return;
+    e.preventDefault();
+    const x = e.pageX - el.offsetLeft;
+    const walk = x - startXRef.current;
+    el.scrollLeft = scrollLeftRef.current - walk;
+  };
+
+  const handleMouseUpOrLeave = () => {
+    isDownRef.current = false;
+    setIsDragging(false);
+    // restart autoplay after interaction
+    startAutoplay();
+  };
+
+  // Touch support (basic)
+  const handleTouchStart = (e: any) => {
+    const el = trackRef.current;
+    if (!el) return;
+    isDownRef.current = true;
+    setIsDragging(true);
+    startXRef.current = e.touches[0].pageX - el.offsetLeft;
+    scrollLeftRef.current = el.scrollLeft;
+    stopAutoplay();
+  };
+
+  const handleTouchMove = (e: any) => {
+    const el = trackRef.current;
+    if (!el || !isDownRef.current) return;
+    const x = e.touches[0].pageX - el.offsetLeft;
+    const walk = x - startXRef.current;
+    el.scrollLeft = scrollLeftRef.current - walk;
+  };
+
+  const handleTouchEnd = () => {
+    isDownRef.current = false;
+    setIsDragging(false);
+    startAutoplay();
   };
 
   return (
@@ -77,9 +139,21 @@ export const Blog = () => {
         <div className="relative max-w-[1545px] mx-auto">
           <div
             ref={trackRef}
-            className="w-full flex-nowrap overflow-x-scroll py-2 hide-scrollbar hide-scrollbar flex gap-[clamp(0.5rem,_-0.5rem_+_2.083vw,_2rem)]"
             role="list"
             aria-label="Blog posts carousel"
+            onMouseDown={handleMouseDown}
+            onMouseMove={handleMouseMove}
+            onMouseUp={handleMouseUpOrLeave}
+            onMouseLeave={handleMouseUpOrLeave}
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+            onDragStart={(e) => e.preventDefault()}
+            className={`w-full flex-nowrap overflow-x-scroll py-2 hide-scrollbar hide-scrollbar flex gap-[clamp(0.5rem,_-0.5rem_+_2.083vw,_2rem)] ${
+              isDragging
+                ? "cursor-grabbing select-none"
+                : "cursor-grab select-auto"
+            }`}
           >
             {posts.map((p, idx) => (
               <article
@@ -95,6 +169,7 @@ export const Blog = () => {
                     height={281}
                     className="object-cover"
                     priority={idx === 0}
+                    draggable={false}
                   />
                 </div>
 
@@ -132,14 +207,14 @@ export const Blog = () => {
             <button
               aria-label="Previous"
               onClick={() => scrollPrev(1)}
-              className="text-primary-1"
+              className="text-primary-1 cursor-pointer px-4 py-1 flex justify-center items-center"
             >
               <div className="icon-arrow" />
             </button>
             <button
               aria-label="Next"
               onClick={() => scrollNext(1)}
-              className="text-primary-1"
+              className="text-primary-1 cursor-pointer px-4 py-1 flex justify-center items-center"
             >
               <div className="icon-arrow rotate-180 -mt-0.5" />
             </button>
